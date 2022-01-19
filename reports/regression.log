@@ -33,6 +33,6 @@ The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
 # Pairplot für numerische Variablen mit Farbmarkierung für ocean_proximity
-sns.pairplot(data=train_dataset, hue="ocean_proximity");
+sns.pairplot(data=train_dataset,  hue="ocean_proximity");
 -------------------
 

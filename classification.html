@@ -86,7 +86,7 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
-   California Housing Guide
+   Einleitung
   </a>
  </li>
 </ul>
@@ -238,20 +238,30 @@
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#import-libraries-daten">
-     Import Libraries &amp; Daten
+    <a class="reference internal nav-link" href="#import-module-libraries">
+     Import Module &amp; Libraries
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#erstellen-der-pipeline-fur-scikit-learn-modelle">
-     Erstellen der Pipeline für scikit learn Modelle
+    <a class="reference internal nav-link" href="#erstellen-einer-pipeline">
+     Erstellen einer Pipeline
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-data">
+   Import Data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-split">
    Data Split
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-inspection-eda">
+   Data Inspection &amp; EDA
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -368,8 +378,9 @@
 <section id="setup">
 <h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
-<section id="import-libraries-daten">
-<h2>Import Libraries &amp; Daten<a class="headerlink" href="#import-libraries-daten" title="Permalink to this headline">¶</a></h2>
+<section id="import-module-libraries">
+<h2>Import Module &amp; Libraries<a class="headerlink" href="#import-module-libraries" title="Permalink to this headline">¶</a></h2>
+<p>Zu Beginn werden die benötigten Komponenten aus den entsprechenden Libraries importiert.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -404,6 +415,49 @@
 </div>
 </div>
 </div>
+</section>
+<section id="erstellen-einer-pipeline">
+<h2>Erstellen einer Pipeline<a class="headerlink" href="#erstellen-einer-pipeline" title="Permalink to this headline">¶</a></h2>
+<p>Um die numerische und kategoriale Variablen automatisch in ein korrektes Format für die scikit learn Modelle zu transformieren, wird an dieser Stelle eine Pipeline definiert. Diese besteht aus verschiedenen Elementen, welche bspw. fehlende Werte ausfüllt (SimpleImputer) oder kategoriale Variablen in ein binäres Format umwandelt (OneHotEncoder).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># für numeric features</span>
+<span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;imputer&#39;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())</span>
+    <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># für categorical features  </span>
+<span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;imputer&#39;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s1">&#39;missing&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">))</span>
+    <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Erstellen der Pipeline, zusammenführen von cat und numeric transformer</span>
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">selector</span><span class="p">(</span><span class="n">dtype_exclude</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">))</span>
+        <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="import-data">
+<h1>Import Data<a class="headerlink" href="#import-data" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>Als nächstes wird der Datensatz aus dem GitHub Repository importiert.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ROOT</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/jan-kirenz/project-OliScha/main/&quot;</span>
@@ -414,6 +468,7 @@
 </div>
 </div>
 </div>
+<p>Wir werfen einen ersten Blick auf die Daten um zu prüfen, auch um zu prüfen ob der Import funktioniert hat. Hier fällt direkt auf, dass die erste Observation durch Text und ein Währungszeichen verunreigt ist.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prüfen ob Import funktioniert hat</span>
@@ -614,47 +669,12 @@
 </div></div></div>
 </div>
 </section>
-<section id="erstellen-der-pipeline-fur-scikit-learn-modelle">
-<h2>Erstellen der Pipeline für scikit learn Modelle<a class="headerlink" href="#erstellen-der-pipeline-fur-scikit-learn-modelle" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># für numeric features</span>
-<span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;imputer&#39;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())</span>
-    <span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># für categorical features  </span>
-<span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;imputer&#39;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s1">&#39;missing&#39;</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">))</span>
-    <span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Erstellen der Pipeline, zusammenführen von cat und numeric transformer</span>
-<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">selector</span><span class="p">(</span><span class="n">dtype_exclude</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">selector</span><span class="p">(</span><span class="n">dtype_include</span><span class="o">=</span><span class="s2">&quot;category&quot;</span><span class="p">))</span>
-        <span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Siehe Kapitel <em>Regression</em></p>
-</section>
-</section>
 <section id="data-split">
 <h1>Data Split<a class="headerlink" href="#data-split" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
+<p>Direkt nach dem Import und einem ersten Blick auf die Daten werden die Daten in Traings- und Testdaten aufgeteilt. Alle folgenden Schritt finden auf Basis der Trainingsdaten statt, um möglichst realistische Ergebnisse bei der späteren Evaluation mit Testdaten zu erzielen.</p>
+<p>Dadurch soll ein möglichst realistischer generalization error (or out-of-sample error) erzielt werden.</p>
+<p>Bestimmte Schritte der Datenaufbereitung (datatypes, selbst erstellte Variablen etc.) müssen dann späte rallerdings auch für die Testdaten durchgeführt werden, um diese zur Evaluation nutzen zu können.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data Split</span>
@@ -858,6 +878,11 @@
 </div></div></div>
 </div>
 </section>
+<section id="data-inspection-eda">
+<h1>Data Inspection &amp; EDA<a class="headerlink" href="#data-inspection-eda" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils" />
+<p>Die ausführliche Untersuchung und Interpretation der Variablen wird im Kapitel “Regression” behandelt und ist auch für diese Kapitel gültig, da es sich um die selben Daten handelt.</p>
+</section>
 <section id="data-transformation">
 <h1>Data Transformation<a class="headerlink" href="#data-transformation" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
@@ -885,13 +910,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\olive\AppData\Local\Temp/ipykernel_15100/1257863661.py:2: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\olive\AppData\Local\Temp/ipykernel_3112/1257863661.py:2: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   train_dataset[&#39;median_house_value&#39;] = train_dataset[&#39;median_house_value&#39;].astype(&quot;string&quot;)
-C:\Users\olive\AppData\Local\Temp/ipykernel_15100/1257863661.py:3: SettingWithCopyWarning: 
+C:\Users\olive\AppData\Local\Temp/ipykernel_3112/1257863661.py:3: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -918,25 +943,25 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\olive\AppData\Local\Temp/ipykernel_15100/2696206269.py:2: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\olive\AppData\Local\Temp/ipykernel_3112/2696206269.py:2: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   train_dataset[&#39;median_house_value&#39;] = train_dataset[&#39;median_house_value&#39;].astype(&quot;float64&quot;)
-C:\Users\olive\AppData\Local\Temp/ipykernel_15100/2696206269.py:3: SettingWithCopyWarning: 
+C:\Users\olive\AppData\Local\Temp/ipykernel_3112/2696206269.py:3: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   train_dataset[&#39;housing_median_age&#39;] = train_dataset[&#39;housing_median_age&#39;].astype(&quot;float64&quot;)
-C:\Users\olive\AppData\Local\Temp/ipykernel_15100/2696206269.py:4: SettingWithCopyWarning: 
+C:\Users\olive\AppData\Local\Temp/ipykernel_3112/2696206269.py:4: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   train_dataset[&#39;total_bedrooms&#39;] = train_dataset[&#39;total_bedrooms&#39;].astype(&quot;int64&quot;)
-C:\Users\olive\AppData\Local\Temp/ipykernel_15100/2696206269.py:5: SettingWithCopyWarning: 
+C:\Users\olive\AppData\Local\Temp/ipykernel_3112/2696206269.py:5: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -954,7 +979,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\olive\AppData\Local\Temp/ipykernel_15100/1780705196.py:2: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\olive\AppData\Local\Temp/ipykernel_3112/1780705196.py:2: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -971,7 +996,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\olive\AppData\Local\Temp/ipykernel_15100/1027169169.py:1: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\olive\AppData\Local\Temp/ipykernel_3112/1027169169.py:1: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -1247,7 +1272,7 @@ Model Family:                                                      Binomial   Df
 Link Function:                                                        logit   Scale:                          1.0000
 Method:                                                                IRLS   Log-Likelihood:                -5655.1
 Date:                                                      Wed, 19 Jan 2022   Deviance:                       11310.
-Time:                                                              13:55:37   Pearson chi2:                 1.45e+10
+Time:                                                              18:13:30   Pearson chi2:                 1.45e+10
 No. Iterations:                                                           8                                         
 Covariance Type:                                                  nonrobust                                         
 =================================================================================================
@@ -2134,7 +2159,7 @@ Demnach wäre das <strong>Modell</strong> <strong>mit</strong> <strong>Threshold
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/classification_55_0.png" src="_images/classification_55_0.png" />
+<img alt="_images/classification_62_0.png" src="_images/classification_62_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2175,7 +2200,7 @@ weighted avg       0.86      0.86      0.86      3270
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/classification_58_0.png" src="_images/classification_58_0.png" />
+<img alt="_images/classification_65_0.png" src="_images/classification_65_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2215,7 +2240,7 @@ weighted avg       0.85      0.85      0.84      3270
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/classification_60_0.png" src="_images/classification_60_0.png" />
+<img alt="_images/classification_67_0.png" src="_images/classification_67_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2355,7 +2380,7 @@ weighted avg       0.86      0.85      0.85      3270
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/classification_81_0.png" src="_images/classification_81_0.png" />
+<img alt="_images/classification_88_0.png" src="_images/classification_88_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2402,7 +2427,7 @@ F1 Score:  0.8858</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/classification_85_0.png" src="_images/classification_85_0.png" />
+<img alt="_images/classification_92_0.png" src="_images/classification_92_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
