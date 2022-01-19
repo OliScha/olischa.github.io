@@ -72,8 +72,6 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
-      <img src="_static/logo.png" class="logo" alt="logo">
-      
       
       <h1 class="site-logo" id="site-title">California Housing Guide</h1>
       
@@ -1754,45 +1752,67 @@ Auch bei <em>housing_median_age</em> gibt es eine auffällig große Menge an Obs
 <p>Nachdem die statistischen Besonderheiten berachtet wurden, soll nun die Verteilung der Variablen sowie deren Abhängigkeiten untereinander sowie auf die vorherzusagende Variable untersucht werden.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pairplot für numerische Variablen mit Farbmarkierung für ocean_proximity</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">,</span>  <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;ocean_proximity&quot;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 20640 entries, 0 to 20639
+Data columns (total 11 columns):
+ #   Column              Non-Null Count  Dtype  
+---  ------              --------------  -----  
+ 0   longitude           20640 non-null  float64
+ 1   latitude            20640 non-null  float64
+ 2   housing_median_age  20640 non-null  object 
+ 3   total_rooms         20640 non-null  int64  
+ 4   total_bedrooms      20433 non-null  float64
+ 5   population          20640 non-null  int64  
+ 6   households          20640 non-null  int64  
+ 7   median_income       20640 non-null  float64
+ 8   median_house_value  20640 non-null  object 
+ 9   ocean_proximity     20640 non-null  object 
+ 10  price_category      20640 non-null  object 
+dtypes: float64(4), int64(3), object(4)
+memory usage: 1.7+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pairplot für numerische Variablen mit Farbmarkierung für ocean_proximity</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;housing_median_age&quot;</span><span class="p">,</span><span class="s2">&quot;total_rooms&quot;</span><span class="p">,</span><span class="s2">&quot;total_bedrooms&quot;</span><span class="p">,</span><span class="s2">&quot;population&quot;</span><span class="p">,</span><span class="s2">&quot;households&quot;</span><span class="p">,</span><span class="s2">&quot;median_income&quot;</span><span class="p">,</span><span class="s2">&quot;median_house_value&quot;</span><span class="p">],</span>\
+     <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;ocean_proximity&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error in callback &lt;function install_repl_displayhook.&lt;locals&gt;.post_execute at 0x000001BB513C7C10&gt; (for post_execute):
+</pre></div>
+</div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Temp</span><span class="o">/</span><span class="n">ipykernel_25740</span><span class="o">/</span><span class="mf">2112801962.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Pairplot für numerische Variablen mit Farbmarkierung für ocean_proximity</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">,</span>  <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;ocean_proximity&quot;</span><span class="p">);</span>
+<span class="nn">~\Anaconda\lib\site-packages\matplotlib\pyplot.py</span> in <span class="ni">post_execute</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span>     <span class="k">def</span> <span class="nf">post_execute</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span>         <span class="k">if</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">is_interactive</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">138</span>             <span class="n">draw_all</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span> 
+<span class="g g-Whitespace">    </span><span class="mi">140</span>     <span class="k">try</span><span class="p">:</span>  <span class="c1"># IPython &gt;= 2</span>
 
-<span class="nn">~\Anaconda\lib\site-packages\seaborn\_decorators.py</span> in <span class="ni">inner_f</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">44</span>             <span class="p">)</span>
-<span class="nn">     45         kwargs.update({k: arg for k, arg</span> in <span class="ni">zip</span><span class="nt">(sig.parameters, args)})</span>
-<span class="ne">---&gt; </span><span class="mi">46</span>         <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span>     <span class="k">return</span> <span class="n">inner_f</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span> 
+<span class="nn">~\Anaconda\lib\site-packages\matplotlib\_pylab_helpers.py</span> in <span class="ni">draw_all</span><span class="nt">(cls, force)</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span>         <span class="k">for</span> <span class="n">manager</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_all_fig_managers</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span>             <span class="k">if</span> <span class="n">force</span> <span class="ow">or</span> <span class="n">manager</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">stale</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">137</span>                 <span class="n">manager</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw_idle</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span> 
+<span class="g g-Whitespace">    </span><span class="mi">139</span> 
 
-<span class="nn">~\Anaconda\lib\site-packages\seaborn\axisgrid.py</span> in <span class="ni">pairplot</span><span class="nt">(data, hue, hue_order, palette, vars, x_vars, y_vars, kind, diag_kind, markers, height, aspect, corner, dropna, plot_kws, diag_kws, grid_kws, size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2152</span>     <span class="c1"># Add a legend</span>
-<span class="g g-Whitespace">   </span><span class="mi">2153</span>     <span class="k">if</span> <span class="n">hue</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">2154</span>         <span class="n">grid</span><span class="o">.</span><span class="n">add_legend</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">2155</span> 
-<span class="g g-Whitespace">   </span><span class="mi">2156</span>     <span class="n">grid</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-
-<span class="nn">~\Anaconda\lib\site-packages\seaborn\axisgrid.py</span> in <span class="ni">add_legend</span><span class="nt">(self, legend_data, title, label_order, adjust_subtitles, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">171</span> 
-<span class="g g-Whitespace">    </span><span class="mi">172</span>             <span class="c1"># Draw the plot again to get the new transformations</span>
-<span class="ne">--&gt; </span><span class="mi">173</span>             <span class="n">_draw_figure</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_figure</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">174</span> 
-<span class="g g-Whitespace">    </span><span class="mi">175</span>             <span class="c1"># Now calculate how much space we need on the right side</span>
-
-<span class="nn">~\Anaconda\lib\site-packages\seaborn\utils.py</span> in <span class="ni">_draw_figure</span><span class="nt">(fig)</span>
-<span class="g g-Whitespace">     </span><span class="mi">93</span>     <span class="sd">&quot;&quot;&quot;Force draw of a matplotlib figure, accounting for back-compat.&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span>     <span class="c1"># See https://github.com/matplotlib/matplotlib/issues/19197 for context</span>
-<span class="ne">---&gt; </span><span class="mi">95</span>     <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="k">if</span> <span class="n">fig</span><span class="o">.</span><span class="n">stale</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span>         <span class="k">try</span><span class="p">:</span>
+<span class="nn">~\Anaconda\lib\site-packages\matplotlib\backend_bases.py</span> in <span class="ni">draw_idle</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2053</span>         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_idle_drawing</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2054</span>             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_idle_draw_cntx</span><span class="p">():</span>
+<span class="ne">-&gt; </span><span class="mi">2055</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2056</span> 
+<span class="g g-Whitespace">   </span><span class="mi">2057</span>     <span class="nd">@property</span>
 
 <span class="nn">~\Anaconda\lib\site-packages\matplotlib\backends\backend_agg.py</span> in <span class="ni">draw</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">    </span><span class="mi">434</span>              <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toolbar</span><span class="o">.</span><span class="n">_wait_cursor_for_draw_cm</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">toolbar</span>
@@ -1872,18 +1892,32 @@ Auch bei <em>housing_median_age</em> gibt es eine auffällig große Menge an Obs
 <span class="g g-Whitespace">     </span><span class="mi">52</span>             <span class="k">if</span> <span class="n">artist</span><span class="o">.</span><span class="n">get_agg_filter</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 
 <span class="nn">~\Anaconda\lib\site-packages\matplotlib\collections.py</span> in <span class="ni">draw</span><span class="nt">(self, renderer)</span>
+<span class="g g-Whitespace">    </span><span class="mi">420</span>             <span class="n">gc</span><span class="o">.</span><span class="n">set_antialiased</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_antialiaseds</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">421</span>             <span class="n">gc</span><span class="o">.</span><span class="n">set_url</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_urls</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="ne">--&gt; </span><span class="mi">422</span>             <span class="n">renderer</span><span class="o">.</span><span class="n">draw_markers</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">423</span>                 <span class="n">gc</span><span class="p">,</span> <span class="n">paths</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">combined_transform</span><span class="o">.</span><span class="n">frozen</span><span class="p">(),</span>
 <span class="g g-Whitespace">    </span><span class="mi">424</span>                 <span class="n">mpath</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">offsets</span><span class="p">),</span> <span class="n">transOffset</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">facecolors</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="g g-Whitespace">    </span><span class="mi">425</span>         <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">426</span>             <span class="n">renderer</span><span class="o">.</span><span class="n">draw_path_collection</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">427</span>                 <span class="n">gc</span><span class="p">,</span> <span class="n">transform</span><span class="o">.</span><span class="n">frozen</span><span class="p">(),</span> <span class="n">paths</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">428</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">get_transforms</span><span class="p">(),</span> <span class="n">offsets</span><span class="p">,</span> <span class="n">transOffset</span><span class="p">,</span>
 
-<span class="nn">~\Anaconda\lib\site-packages\matplotlib\path.py</span> in <span class="ni">vertices</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">198</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">199</span> 
-<span class="ne">--&gt; </span><span class="mi">200</span>     <span class="nd">@property</span>
-<span class="g g-Whitespace">    </span><span class="mi">201</span>     <span class="k">def</span> <span class="nf">vertices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="nn">~\Anaconda\lib\site-packages\matplotlib\transforms.py</span> in <span class="ni">__array__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1476</span>     <span class="k">def</span> <span class="nf">__array__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1477</span>         <span class="sd">&quot;&quot;&quot;Array interface to get at this Transform&#39;s affine matrix.&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1478</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_affine</span><span class="p">()</span><span class="o">.</span><span class="n">get_matrix</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1479</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1480</span>     <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+
+<span class="nn">~\Anaconda\lib\site-packages\matplotlib\transforms.py</span> in <span class="ni">get_affine</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2444</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_b</span><span class="o">.</span><span class="n">get_affine</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">2445</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2446</span>             <span class="k">return</span> <span class="n">Affine2D</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_b</span><span class="o">.</span><span class="n">get_affine</span><span class="p">()</span><span class="o">.</span><span class="n">get_matrix</span><span class="p">(),</span>
+<span class="g g-Whitespace">   </span><span class="mi">2447</span>                                    <span class="bp">self</span><span class="o">.</span><span class="n">_a</span><span class="o">.</span><span class="n">get_affine</span><span class="p">()</span><span class="o">.</span><span class="n">get_matrix</span><span class="p">()))</span>
+<span class="g g-Whitespace">   </span><span class="mi">2448</span> 
+
+<span class="nn">~\Anaconda\lib\site-packages\matplotlib\transforms.py</span> in <span class="ni">__init__</span><span class="nt">(self, matrix, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1912</span>             <span class="c1"># A bit faster than np.identity(3).</span>
+<span class="g g-Whitespace">   </span><span class="mi">1913</span>             <span class="n">matrix</span> <span class="o">=</span> <span class="n">IdentityTransform</span><span class="o">.</span><span class="n">_mtx</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="ne">-&gt; </span><span class="mi">1914</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_mtx</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1915</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_invalid</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="g g-Whitespace">   </span><span class="mi">1916</span> 
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -1895,6 +1929,17 @@ Auch bei <em>housing_median_age</em> gibt es eine auffällig große Menge an Obs
 <li><p>Einfluss auf Y Variable: Ein Zusammenhang zwischen <em>median_income</em> und <em>median_house_value</em> ist zu erkennen. Durch die Einfärbung nach <em>ocean_proximity</em> kann man erkennen, dass sich INLAND Distrikte tendenziell eher am unteren Wertebereich der Y-Variable befinden. Ansonsten gibt es erstmal keine weiteren offensichtlichen Zusammenhänge.</p></li>
 <li><p>Variablen untereinander: Es gibt starke lineare Zusammenhänge zwischen <em>total_rooms</em>, <em>total_bedrooms</em>, <em>households</em> und <em>population</em>. Das ist soweit logisch und muss bei der Modellierung später beachtet werden (Collinearity).</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pairplot für numerische Variablen mit Farbmarkierung für ocean_proximity</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span><span class="s2">&quot;median_house_value&quot;</span><span class="p">],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;ocean_proximity&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/regression_57_0.png" src="_images/regression_57_0.png" />
+</div>
+</div>
 <p>Auch an Hand der Korrelationswerte der numerischen Variablen lässt sich erkennen, dass lediglich <em>median_income</em> einen starken Einfluss auf <em>median_house_value</em> hat.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2094,7 +2139,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_59_0.png" src="_images/regression_59_0.png" />
+<img alt="_images/regression_61_0.png" src="_images/regression_61_0.png" />
 </div>
 </div>
 <p>Die oben bereits erkannten Zusammenhänge lassen sich hier nochmal einen Blick bestätigen.</p>
@@ -2128,7 +2173,7 @@ Name: ocean_proximity, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_65_0.png" src="_images/regression_65_0.png" />
+<img alt="_images/regression_67_0.png" src="_images/regression_67_0.png" />
 </div>
 </div>
 <p>Auf Basis der Geokoordinaten und der Form lässt sich feststellen, dass es sich bei unserem Datensatz um Distrikte aus Kalifornien handelt.<br />
@@ -2141,7 +2186,7 @@ Auf dem Plot lässt sich erkennen, dass sich die Ausprägungen <em>ISLAND</em> u
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_67_0.png" src="_images/regression_67_0.png" />
+<img alt="_images/regression_69_0.png" src="_images/regression_69_0.png" />
 </div>
 </div>
 <p>Durch eine kleine Änderung in den Parametern des Plots lassen sich besonders gut die Gebiete erkennen, aus welchen viele Observations vorliegen. Wie bereits vermutet handelt es sich vor allem um Ballungszentren bei San Francisco und Los Angeles.</p>
@@ -2160,7 +2205,7 @@ Auf dem Plot lässt sich erkennen, dass sich die Ausprägungen <em>ISLAND</em> u
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x1f7daa882e0&gt;
 </pre></div>
 </div>
-<img alt="_images/regression_69_2.png" src="_images/regression_69_2.png" />
+<img alt="_images/regression_71_2.png" src="_images/regression_71_2.png" />
 </div>
 </div>
 <p>Mit Hilfe eines erweiterten Scatterplots können wir sogar visualisieren, wo die Distrikts mit den hohen <em>median_house_value</em> liegen. Wie zu erwarten war handelt es sich ebenfalls um die Gebiete rund um San Francisco und Los Angeles.</p>
@@ -2172,7 +2217,7 @@ Auf dem Plot lässt sich erkennen, dass sich die Ausprägungen <em>ISLAND</em> u
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_71_0.png" src="_images/regression_71_0.png" />
+<img alt="_images/regression_73_0.png" src="_images/regression_73_0.png" />
 </div>
 </div>
 <p>Durch ein erweitertes Boxplot Diagramm können wir erkennen, dass die Verteilung von <em>median_house_value</em> in den Ausprägungen <em>&lt;1H OCEAN, NEAR BAY</em> und <em>NEAR OCEAN</em> sehr ähnlich ist. <em>INLAND</em> und <em>ISLAND</em> unterscheiden sich davon stark. Ggfs. könnte es Sinn machen, die ähnlichen Ausprägungen zusammenzufassen, das soll jedoch zuerst in den Modellen getestet werden.</p>
@@ -2184,7 +2229,7 @@ Auf dem Plot lässt sich erkennen, dass sich die Ausprägungen <em>ISLAND</em> u
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_73_0.png" src="_images/regression_73_0.png" />
+<img alt="_images/regression_75_0.png" src="_images/regression_75_0.png" />
 </div>
 </div>
 <p>Durch eine andere Form der Darstellung lässt sich nochmal gut die Menge und Dicht der Observations erkennen - und dass für <em>ISLAND</em> nur sehr wenige Observations vorliegen.</p>
@@ -2199,7 +2244,7 @@ Auf dem Plot lässt sich erkennen, dass sich die Ausprägungen <em>ISLAND</em> u
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x1f7d6bc9e20&gt;
 </pre></div>
 </div>
-<img alt="_images/regression_75_1.png" src="_images/regression_75_1.png" />
+<img alt="_images/regression_77_1.png" src="_images/regression_77_1.png" />
 </div>
 </div>
 <blockquote>
@@ -2218,7 +2263,7 @@ Auffällig ist, das es für die Ausprägung <em>ISLAND</em> nur sehr wenige Obse
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_79_0.png" src="_images/regression_79_0.png" />
+<img alt="_images/regression_81_0.png" src="_images/regression_81_0.png" />
 </div>
 </div>
 <p>Wie bereits im Parplot lässt sich hier nochmal gut erkennen, dass tendenziell mit steigendem <em>median_income</em> auch der <em>median_house_value</em> steigt.</p>
@@ -2230,7 +2275,7 @@ Auffällig ist, das es für die Ausprägung <em>ISLAND</em> nur sehr wenige Obse
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_81_0.png" src="_images/regression_81_0.png" />
+<img alt="_images/regression_83_0.png" src="_images/regression_83_0.png" />
 </div>
 </div>
 <p>Analyse “total_rooms”</p>
@@ -2244,7 +2289,7 @@ Auffällig ist, das es für die Ausprägung <em>ISLAND</em> nur sehr wenige Obse
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;total_rooms&#39;, ylabel=&#39;median_house_value&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/regression_83_1.png" src="_images/regression_83_1.png" />
+<img alt="_images/regression_85_1.png" src="_images/regression_85_1.png" />
 </div>
 </div>
 <p>Auch bei <em>total_rooms</em> lääst sich ein leichter Trend erkennen. Da es sich allerdings hier um die Gesamtzahl der Räume in einem Distrikt handelt, welche natürlich direkt abhängig von dessen Größe ist, ist diese Variable möglicherweise nicht besonders gut geeignet. Viel besser wäre eine Variable, die die Anzahl der Räume in Relation setzt zur Anzahl an Haushalten oder Menschen. So eine Variable kann später im Feature Engineering erstellt werden.</p>
@@ -2256,7 +2301,7 @@ Auffällig ist, das es für die Ausprägung <em>ISLAND</em> nur sehr wenige Obse
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_85_0.png" src="_images/regression_85_0.png" />
+<img alt="_images/regression_87_0.png" src="_images/regression_87_0.png" />
 </div>
 </div>
 <p>Analyse “housing_median_age”</p>
@@ -2270,7 +2315,7 @@ Auffällig ist, das es für die Ausprägung <em>ISLAND</em> nur sehr wenige Obse
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;housing_median_age&#39;, ylabel=&#39;median_house_value&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/regression_87_1.png" src="_images/regression_87_1.png" />
+<img alt="_images/regression_89_1.png" src="_images/regression_89_1.png" />
 </div>
 </div>
 <p>Bei der Variable <em>housing_median_age</em> könnte man eine Auswirkung auf median_house_value erwarten, da neuere Häuser teurer sein könnten als alte Häuser. Anhand der Analyse lässt sich jedoch erkennen, dass diese Auswirkung nur sehr gering ist. Das könnte man bspw. durch teure Altbauwohungen oder durchgeführte Instandhaltungsmaßnahmen erklären.</p>
@@ -2282,7 +2327,7 @@ Auffällig ist, das es für die Ausprägung <em>ISLAND</em> nur sehr wenige Obse
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_89_0.png" src="_images/regression_89_0.png" />
+<img alt="_images/regression_91_0.png" src="_images/regression_91_0.png" />
 </div>
 </div>
 <blockquote>
@@ -2345,7 +2390,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_97_0.png" src="_images/regression_97_0.png" />
+<img alt="_images/regression_99_0.png" src="_images/regression_99_0.png" />
 </div>
 </div>
 <p>Hier lassen sich Outlier bei <em>people_per_household</em>, <em>bedrooms_per_household</em> und <em>rooms_per_household</em> erkennen. Diese können später entfernt werden.</p>
@@ -2359,7 +2404,7 @@ Name: median_house_value, dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;bedrooms_per_room&#39;, ylabel=&#39;median_house_value&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/regression_99_1.png" src="_images/regression_99_1.png" />
+<img alt="_images/regression_101_1.png" src="_images/regression_101_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2369,7 +2414,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_100_0.png" src="_images/regression_100_0.png" />
+<img alt="_images/regression_102_0.png" src="_images/regression_102_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2382,7 +2427,7 @@ Name: median_house_value, dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;rooms_per_household&#39;, ylabel=&#39;median_house_value&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/regression_101_1.png" src="_images/regression_101_1.png" />
+<img alt="_images/regression_103_1.png" src="_images/regression_103_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2392,7 +2437,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_102_0.png" src="_images/regression_102_0.png" />
+<img alt="_images/regression_104_0.png" src="_images/regression_104_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2405,7 +2450,7 @@ Name: median_house_value, dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;people_per_household&#39;, ylabel=&#39;median_house_value&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/regression_103_1.png" src="_images/regression_103_1.png" />
+<img alt="_images/regression_105_1.png" src="_images/regression_105_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2415,7 +2460,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_104_0.png" src="_images/regression_104_0.png" />
+<img alt="_images/regression_106_0.png" src="_images/regression_106_0.png" />
 </div>
 </div>
 <p>Die zuvor auf dem Scatterplot aufgefallenen Outliers von <em>people_per_household</em> sollen nun identifiziert und entfernt werden. Distrikte, in denen im Schnitt mehrere hundert Menschen in einem Haushalt leben klingen nach fehlerhaften Daten (Unterschiedliche Methode in der Erfassung der Daten, Tippfehler etc.)</p>
@@ -3086,7 +3131,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_111_0.png" src="_images/regression_111_0.png" />
+<img alt="_images/regression_113_0.png" src="_images/regression_113_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3096,7 +3141,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_112_0.png" src="_images/regression_112_0.png" />
+<img alt="_images/regression_114_0.png" src="_images/regression_114_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3106,7 +3151,7 @@ Name: median_house_value, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_113_0.png" src="_images/regression_113_0.png" />
+<img alt="_images/regression_115_0.png" src="_images/regression_115_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3271,7 +3316,7 @@ Name: ocean_proximity, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_124_0.png" src="_images/regression_124_0.png" />
+<img alt="_images/regression_126_0.png" src="_images/regression_126_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3282,7 +3327,7 @@ Name: ocean_proximity, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_125_0.png" src="_images/regression_125_0.png" />
+<img alt="_images/regression_127_0.png" src="_images/regression_127_0.png" />
 </div>
 </div>
 </section>
@@ -3413,7 +3458,7 @@ Um die Daten in das für scikit learn benötigte Format zu bringen, führen wir 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_139_0.png" src="_images/regression_139_0.png" />
+<img alt="_images/regression_141_0.png" src="_images/regression_141_0.png" />
 </div>
 </div>
 </section>
@@ -3638,7 +3683,7 @@ Das Modell ist also nicht gut genug gefittet, also underfitted. Nun kann entwede
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_158_0.png" src="_images/regression_158_0.png" />
+<img alt="_images/regression_160_0.png" src="_images/regression_160_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4007,7 +4052,7 @@ Int64Index([10574, 17237,  4643,  4592,  5288, 15700, 17108,  8857,  5464,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_169_0.png" src="_images/regression_169_0.png" />
+<img alt="_images/regression_171_0.png" src="_images/regression_171_0.png" />
 </div>
 </div>
 <p>Auf dem Partial Regression Plot können wir jeweils einen mehr oder weniger linearen Zusammenhang der Features auf die Y Variable erkennen.</p>
@@ -4019,7 +4064,7 @@ Int64Index([10574, 17237,  4643,  4592,  5288, 15700, 17108,  8857,  5464,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_171_0.png" src="_images/regression_171_0.png" />
+<img alt="_images/regression_173_0.png" src="_images/regression_173_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4030,7 +4075,7 @@ Int64Index([10574, 17237,  4643,  4592,  5288, 15700, 17108,  8857,  5464,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_172_0.png" src="_images/regression_172_0.png" />
+<img alt="_images/regression_174_0.png" src="_images/regression_174_0.png" />
 </div>
 </div>
 <p>Da bereits im Feature Engineering sowie durch Cook’s Distance starke Outlier entfernt wurden, sind hier keine Outlier mehr mit bspw. besonders starkem Hebel zu erkennen.</p>
@@ -4282,7 +4327,7 @@ Int64Index([10574, 17237,  4643,  4592,  5288, 15700, 17108,  8857,  5464,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_176_0.png" src="_images/regression_176_0.png" />
+<img alt="_images/regression_178_0.png" src="_images/regression_178_0.png" />
 </div>
 </div>
 <p>Im residplot sollten im Optimalfall die residuals einigermaßen gleichmäßig zufällig um die horizontale Nulllinie verteilt sein.
@@ -4320,7 +4365,7 @@ Da dies nicht ganz der Fall ist, könnte es auf heteroscedasticity hindeuten. Da
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_181_0.png" src="_images/regression_181_0.png" />
+<img alt="_images/regression_183_0.png" src="_images/regression_183_0.png" />
 </div>
 </div>
 </section>
@@ -4443,7 +4488,7 @@ Da dies nicht ganz der Fall ist, könnte es auf heteroscedasticity hindeuten. Da
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_194_0.png" src="_images/regression_194_0.png" />
+<img alt="_images/regression_196_0.png" src="_images/regression_196_0.png" />
 </div>
 </div>
 </section>
@@ -4819,7 +4864,7 @@ R squared validation set 66.89
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_229_0.png" src="_images/regression_229_0.png" />
+<img alt="_images/regression_231_0.png" src="_images/regression_231_0.png" />
 </div>
 </div>
 <section id="test-mit-cook-s-distance-bereinigten-dataset">
@@ -5069,7 +5114,7 @@ R squared validation set 47.93
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_248_0.png" src="_images/regression_248_0.png" />
+<img alt="_images/regression_250_0.png" src="_images/regression_250_0.png" />
 </div>
 </div>
 </section>
@@ -5168,7 +5213,7 @@ R squared test set 47.31
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_253_0.png" src="_images/regression_253_0.png" />
+<img alt="_images/regression_255_0.png" src="_images/regression_255_0.png" />
 </div>
 </div>
 </section>
