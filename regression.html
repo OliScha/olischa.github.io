@@ -588,133 +588,9 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ROOT</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/jan-kirenz/project-OliScha/main/&quot;</span>
-<span class="n">DATA</span> <span class="o">=</span> <span class="s2">&quot;project_data.csv?token=GHSAT0AAAAAABPCEITIYHBIEPRTFMZJXUGKYPKREJQ&quot;</span>
+<span class="n">DATA</span> <span class="o">=</span> <span class="s2">&quot;project_data.csv?token=GHSAT0AAAAAABPCEITJY2OBVJLYHV7JN4DCYPT7VQQ&quot;</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ROOT</span> <span class="o">+</span> <span class="n">DATA</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">HTTPError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Temp</span><span class="o">/</span><span class="n">ipykernel_21520</span><span class="o">/</span><span class="mf">1129817678.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">DATA</span> <span class="o">=</span> <span class="s2">&quot;project_data.csv?token=GHSAT0AAAAAABPCEITIYHBIEPRTFMZJXUGKYPKREJQ&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">ROOT</span> <span class="o">+</span> <span class="n">DATA</span><span class="p">)</span>
-
-<span class="nn">~\Anaconda\lib\site-packages\pandas\util\_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span> 
-<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
-
-<span class="nn">~\Anaconda\lib\site-packages\pandas\io\parsers\readers.py</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">584</span>     <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">585</span> 
-<span class="ne">--&gt; </span><span class="mi">586</span>     <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">587</span> 
-<span class="g g-Whitespace">    </span><span class="mi">588</span> 
-
-<span class="nn">~\Anaconda\lib\site-packages\pandas\io\parsers\readers.py</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">480</span> 
-<span class="g g-Whitespace">    </span><span class="mi">481</span>     <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">482</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">483</span> 
-<span class="g g-Whitespace">    </span><span class="mi">484</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-
-<span class="nn">~\Anaconda\lib\site-packages\pandas\io\parsers\readers.py</span> in <span class="ni">__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">809</span>             <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">810</span> 
-<span class="ne">--&gt; </span><span class="mi">811</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">812</span> 
-<span class="g g-Whitespace">    </span><span class="mi">813</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-<span class="nn">~\Anaconda\lib\site-packages\pandas\io\parsers\readers.py</span> in <span class="ni">_make_engine</span><span class="nt">(self, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1038</span>             <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1039</span>         <span class="c1"># error: Too many arguments for &quot;ParserBase&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1040</span>         <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>  <span class="c1"># type: ignore[call-arg]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1041</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1042</span>     <span class="k">def</span> <span class="nf">_failover_to_python</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-<span class="nn">~\Anaconda\lib\site-packages\pandas\io\parsers\c_parser_wrapper.py</span> in <span class="ni">__init__</span><span class="nt">(self, src, **kwds)</span>
-<span class="g g-Whitespace">     </span><span class="mi">49</span> 
-<span class="g g-Whitespace">     </span><span class="mi">50</span>         <span class="c1"># open handles</span>
-<span class="ne">---&gt; </span><span class="mi">51</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_open_handles</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span> 
-
-<span class="nn">~\Anaconda\lib\site-packages\pandas\io\parsers\base_parser.py</span> in <span class="ni">_open_handles</span><span class="nt">(self, src, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span>         <span class="n">Let</span> <span class="n">the</span> <span class="n">readers</span> <span class="nb">open</span> <span class="n">IOHandles</span> <span class="n">after</span> <span class="n">they</span> <span class="n">are</span> <span class="n">done</span> <span class="k">with</span> <span class="n">their</span> <span class="n">potential</span> <span class="n">raises</span><span class="o">.</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">222</span><span class="s2">         self.handles = get_handle(</span>
-<span class="g g-Whitespace">    </span><span class="mi">223</span><span class="s2">             src,</span>
-<span class="g g-Whitespace">    </span><span class="mi">224</span><span class="s2">             &quot;r&quot;,</span>
-
-<span class="nn">~\Anaconda\lib\site-packages\pandas\io\common.py</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">607</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">608</span><span class="s2">     # open URLs</span>
-<span class="ne">--&gt; </span><span class="mi">609</span><span class="s2">     ioargs = _get_filepath_or_buffer(</span>
-<span class="g g-Whitespace">    </span><span class="mi">610</span><span class="s2">         path_or_buf,</span>
-<span class="g g-Whitespace">    </span><span class="mi">611</span><span class="s2">         encoding=encoding,</span>
-
-<span class="nn">~\Anaconda\lib\site-packages\pandas\io\common.py</span> in <span class="ni">_get_filepath_or_buffer</span><span class="nt">(filepath_or_buffer, encoding, compression, mode, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span><span class="s2">         # assuming storage_options is to be interpreted as headers</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span><span class="s2">         req_info = urllib.request.Request(filepath_or_buffer, headers=storage_options)</span>
-<span class="ne">--&gt; </span><span class="mi">312</span><span class="s2">         with urlopen(req_info) as req:</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span><span class="s2">             content_encoding = req.headers.get(&quot;Content-Encoding&quot;, None)</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span><span class="s2">             if content_encoding == &quot;gzip&quot;:</span>
-
-<span class="nn">~\Anaconda\lib\site-packages\pandas\io\common.py</span> in <span class="ni">urlopen</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span><span class="s2">     import urllib.request</span>
-<span class="g g-Whitespace">    </span><span class="mi">211</span><span class="s2"> </span>
-<span class="ne">--&gt; </span><span class="mi">212</span><span class="s2">     return urllib.request.urlopen(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">213</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">214</span><span class="s2"> </span>
-
-<span class="nn">~\Anaconda\lib\urllib\request.py</span> in <span class="ni">urlopen</span><span class="nt">(url, data, timeout, cafile, capath, cadefault, context)</span>
-<span class="g g-Whitespace">    </span><span class="mi">212</span><span class="s2">     else:</span>
-<span class="g g-Whitespace">    </span><span class="mi">213</span><span class="s2">         opener = _opener</span>
-<span class="ne">--&gt; </span><span class="mi">214</span><span class="s2">     return opener.open(url, data, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span><span class="s2"> def install_opener(opener):</span>
-
-<span class="nn">~\Anaconda\lib\urllib\request.py</span> in <span class="ni">open</span><span class="nt">(self, fullurl, data, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">521</span><span class="s2">         for processor in self.process_response.get(protocol, []):</span>
-<span class="g g-Whitespace">    </span><span class="mi">522</span><span class="s2">             meth = getattr(processor, meth_name)</span>
-<span class="ne">--&gt; </span><span class="mi">523</span><span class="s2">             response = meth(req, response)</span>
-<span class="g g-Whitespace">    </span><span class="mi">524</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">525</span><span class="s2">         return response</span>
-
-<span class="nn">~\Anaconda\lib\urllib\request.py</span> in <span class="ni">http_response</span><span class="nt">(self, request, response)</span>
-<span class="g g-Whitespace">    </span><span class="mi">630</span><span class="s2">         # request was successfully received, understood, and accepted.</span>
-<span class="g g-Whitespace">    </span><span class="mi">631</span><span class="s2">         if not (200 &lt;= code &lt; 300):</span>
-<span class="ne">--&gt; </span><span class="mi">632</span><span class="s2">             response = self.parent.error(</span>
-<span class="g g-Whitespace">    </span><span class="mi">633</span><span class="s2">                 &#39;http&#39;, request, response, code, msg, hdrs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">634</span><span class="s2"> </span>
-
-<span class="nn">~\Anaconda\lib\urllib\request.py</span> in <span class="ni">error</span><span class="nt">(self, proto, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">559</span><span class="s2">         if http_err:</span>
-<span class="g g-Whitespace">    </span><span class="mi">560</span><span class="s2">             args = (dict, &#39;default&#39;, &#39;http_error_default&#39;) + orig_args</span>
-<span class="ne">--&gt; </span><span class="mi">561</span><span class="s2">             return self._call_chain(*args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">562</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">563</span><span class="s2"> # XXX probably also want an abstract factory that knows when it makes</span>
-
-<span class="nn">~\Anaconda\lib\urllib\request.py</span> in <span class="ni">_call_chain</span><span class="nt">(self, chain, kind, meth_name, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">492</span><span class="s2">         for handler in handlers:</span>
-<span class="g g-Whitespace">    </span><span class="mi">493</span><span class="s2">             func = getattr(handler, meth_name)</span>
-<span class="ne">--&gt; </span><span class="mi">494</span><span class="s2">             result = func(*args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">495</span><span class="s2">             if result is not None:</span>
-<span class="g g-Whitespace">    </span><span class="mi">496</span><span class="s2">                 return result</span>
-
-<span class="nn">~\Anaconda\lib\urllib\request.py</span> in <span class="ni">http_error_default</span><span class="nt">(self, req, fp, code, msg, hdrs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">639</span><span class="s2"> class HTTPDefaultErrorHandler(BaseHandler):</span>
-<span class="g g-Whitespace">    </span><span class="mi">640</span><span class="s2">     def http_error_default(self, req, fp, code, msg, hdrs):</span>
-<span class="ne">--&gt; </span><span class="mi">641</span><span class="s2">         raise HTTPError(req.full_url, code, msg, hdrs, fp)</span>
-<span class="g g-Whitespace">    </span><span class="mi">642</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">643</span><span class="s2"> class HTTPRedirectHandler(BaseHandler):</span>
-
-<span class="ne">HTTPError</span>: HTTP Error 404: Not Found
 </pre></div>
 </div>
 </div>
@@ -2009,7 +1885,7 @@ Auf dem Plot lässt sich erkennen, dass sich die Ausprägungen <em>ISLAND</em> u
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x20701cf53a0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x189838ec400&gt;
 </pre></div>
 </div>
 <img alt="_images/regression_70_2.png" src="_images/regression_70_2.png" />
@@ -2048,7 +1924,7 @@ Auf dem Plot lässt sich erkennen, dass sich die Ausprägungen <em>ISLAND</em> u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x207025db4c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x18983679f10&gt;
 </pre></div>
 </div>
 <img alt="_images/regression_76_1.png" src="_images/regression_76_1.png" />
@@ -3190,32 +3066,32 @@ Um die Daten in das für scikit learn benötigte Format zu bringen, führen wir 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 {color: black;background-color: white;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 pre{padding: 0;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-toggleable {background-color: white;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-estimator:hover {background-color: #d4ebff;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-item {z-index: 1;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-parallel::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-parallel-item:only-child::after {width: 0;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;position: relative;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86 div.sk-container {display: inline-block;position: relative;}</style><div id="sk-0e19b5fd-2bfb-46ef-bb86-75d9299caf86" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="18af0f29-b33c-4dd6-b7d9-305d6e379657" type="checkbox" ><label class="sk-toggleable__label" for="18af0f29-b33c-4dd6-b7d9-305d6e379657">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[('preprocessor',
+<div class="output text_html"><style>#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 {color: black;background-color: white;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 pre{padding: 0;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-toggleable {background-color: white;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-estimator:hover {background-color: #d4ebff;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-item {z-index: 1;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-parallel::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-parallel-item:only-child::after {width: 0;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;position: relative;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757 div.sk-container {display: inline-block;position: relative;}</style><div id="sk-16f6e830-6ec0-4d69-b7a5-a4abfb418757" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="e67e5caa-d26d-4b73-bc19-3eb26642e0c2" type="checkbox" ><label class="sk-toggleable__label" for="e67e5caa-d26d-4b73-bc19-3eb26642e0c2">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[('preprocessor',
                  ColumnTransformer(transformers=[('num',
                                                   Pipeline(steps=[('imputer',
                                                                    SimpleImputer(strategy='median')),
                                                                   ('scaler',
                                                                    StandardScaler())]),
-                                                  <sklearn.compose._column_transformer.make_column_selector object at 0x0000020777E615E0>),
+                                                  <sklearn.compose._column_transformer.make_column_selector object at 0x0000018982D5EEB0>),
                                                  ('cat',
                                                   Pipeline(steps=[('imputer',
                                                                    SimpleImputer(fill_value='missing',
                                                                                  strategy='constant')),
                                                                   ('onehot',
                                                                    OneHotEncoder(handle_unknown='ignore'))]),
-                                                  <sklearn.compose._column_transformer.make_column_selector object at 0x0000020777E61610>)])),
-                ('lin', LinearRegression())])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="1df40c97-6bac-4902-8a70-e8c058c202bb" type="checkbox" ><label class="sk-toggleable__label" for="1df40c97-6bac-4902-8a70-e8c058c202bb">preprocessor: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('num',
+                                                  <sklearn.compose._column_transformer.make_column_selector object at 0x0000018982D5EE20>)])),
+                ('lin', LinearRegression())])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="9af2e52f-ba5b-4ff1-9548-e040a1f9fbd7" type="checkbox" ><label class="sk-toggleable__label" for="9af2e52f-ba5b-4ff1-9548-e040a1f9fbd7">preprocessor: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('num',
                                  Pipeline(steps=[('imputer',
                                                   SimpleImputer(strategy='median')),
                                                  ('scaler', StandardScaler())]),
-                                 <sklearn.compose._column_transformer.make_column_selector object at 0x0000020777E615E0>),
+                                 <sklearn.compose._column_transformer.make_column_selector object at 0x0000018982D5EEB0>),
                                 ('cat',
                                  Pipeline(steps=[('imputer',
                                                   SimpleImputer(fill_value='missing',
                                                                 strategy='constant')),
                                                  ('onehot',
                                                   OneHotEncoder(handle_unknown='ignore'))]),
-                                 <sklearn.compose._column_transformer.make_column_selector object at 0x0000020777E61610>)])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="af06dfe5-687d-4889-861d-954acee46a6d" type="checkbox" ><label class="sk-toggleable__label" for="af06dfe5-687d-4889-861d-954acee46a6d">num</label><div class="sk-toggleable__content"><pre><sklearn.compose._column_transformer.make_column_selector object at 0x0000020777E615E0></pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="db1abb24-03f5-4d50-b412-3a3ae940b90c" type="checkbox" ><label class="sk-toggleable__label" for="db1abb24-03f5-4d50-b412-3a3ae940b90c">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy='median')</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="4f58eee8-8fc8-42fe-8e60-da1a77d475f7" type="checkbox" ><label class="sk-toggleable__label" for="4f58eee8-8fc8-42fe-8e60-da1a77d475f7">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="e0ad69f7-3077-4c36-9a03-d28fc3b2f9d2" type="checkbox" ><label class="sk-toggleable__label" for="e0ad69f7-3077-4c36-9a03-d28fc3b2f9d2">cat</label><div class="sk-toggleable__content"><pre><sklearn.compose._column_transformer.make_column_selector object at 0x0000020777E61610></pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="cbce7f92-243c-4d4e-9da4-318fe2a4902f" type="checkbox" ><label class="sk-toggleable__label" for="cbce7f92-243c-4d4e-9da4-318fe2a4902f">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value='missing', strategy='constant')</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="142053cb-0435-4435-b3f5-768fe1587642" type="checkbox" ><label class="sk-toggleable__label" for="142053cb-0435-4435-b3f5-768fe1587642">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown='ignore')</pre></div></div></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="80e680e0-4e8e-4cbc-a161-c942b3f44ba3" type="checkbox" ><label class="sk-toggleable__label" for="80e680e0-4e8e-4cbc-a161-c942b3f44ba3">LinearRegression</label><div class="sk-toggleable__content"><pre>LinearRegression()</pre></div></div></div></div></div></div></div></div></div>
+                                 <sklearn.compose._column_transformer.make_column_selector object at 0x0000018982D5EE20>)])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="d5c20a74-bdeb-4e38-97aa-555e0ec19079" type="checkbox" ><label class="sk-toggleable__label" for="d5c20a74-bdeb-4e38-97aa-555e0ec19079">num</label><div class="sk-toggleable__content"><pre><sklearn.compose._column_transformer.make_column_selector object at 0x0000018982D5EEB0></pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="46d7eaca-4e1f-4e55-a964-c35f309b689d" type="checkbox" ><label class="sk-toggleable__label" for="46d7eaca-4e1f-4e55-a964-c35f309b689d">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy='median')</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="c5a88a38-ad78-451f-85ae-5838627507de" type="checkbox" ><label class="sk-toggleable__label" for="c5a88a38-ad78-451f-85ae-5838627507de">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="97ec0953-9ec6-4825-961f-7a5f3cfe97f9" type="checkbox" ><label class="sk-toggleable__label" for="97ec0953-9ec6-4825-961f-7a5f3cfe97f9">cat</label><div class="sk-toggleable__content"><pre><sklearn.compose._column_transformer.make_column_selector object at 0x0000018982D5EE20></pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="c9a60442-7dc9-48d5-8c5b-927b818fc276" type="checkbox" ><label class="sk-toggleable__label" for="c9a60442-7dc9-48d5-8c5b-927b818fc276">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value='missing', strategy='constant')</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="e33e809e-cccc-43ba-acdb-9bc4547e2169" type="checkbox" ><label class="sk-toggleable__label" for="e33e809e-cccc-43ba-acdb-9bc4547e2169">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown='ignore')</pre></div></div></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="c48a9dd4-1123-4e73-a8c7-85124149d2a0" type="checkbox" ><label class="sk-toggleable__label" for="c48a9dd4-1123-4e73-a8c7-85124149d2a0">LinearRegression</label><div class="sk-toggleable__content"><pre>LinearRegression()</pre></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3410,10 +3286,10 @@ Das Modell ist also nicht gut genug gefittet, also underfitted. Nun kann entwede
   <th>Method:</th>              <td>Least Squares</td>   <th>  F-statistic:       </th>  <td>   5372.</td>  
 </tr>
 <tr>
-  <th>Date:</th>              <td>Wed, 19 Jan 2022</td>  <th>  Prob (F-statistic):</th>   <td>  0.00</td>   
+  <th>Date:</th>              <td>Fri, 21 Jan 2022</td>  <th>  Prob (F-statistic):</th>   <td>  0.00</td>   
 </tr>
 <tr>
-  <th>Time:</th>                  <td>19:46:11</td>      <th>  Log-Likelihood:    </th> <td>-2.0583e+05</td>
+  <th>Time:</th>                  <td>15:30:07</td>      <th>  Log-Likelihood:    </th> <td>-2.0583e+05</td>
 </tr>
 <tr>
   <th>No. Observations:</th>       <td> 16346</td>       <th>  AIC:               </th>  <td>4.117e+05</td> 
@@ -3490,7 +3366,101 @@ Das Modell ist also nicht gut genug gefittet, also underfitted. Nun kann entwede
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/regression_159_0.png" src="_images/regression_159_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Temp</span><span class="o">/</span><span class="n">ipykernel_7740</span><span class="o">/</span><span class="mf">1938551063.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Visualisierung der Outlier nach Cook&#39;s Distance</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">influence_plot</span><span class="p">(</span><span class="n">lm1</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s2">&quot;cooks&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="nn">~\Anaconda\lib\site-packages\statsmodels\graphics\regressionplots.py</span> in <span class="ni">influence_plot</span><span class="nt">(results, external, alpha, criterion, size, plot_alpha, ax, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">916</span> 
+<span class="g g-Whitespace">    </span><span class="mi">917</span>     <span class="n">infl</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get_influence</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">918</span>     <span class="n">res</span> <span class="o">=</span> <span class="n">_influence_plot</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">infl</span><span class="p">,</span> <span class="n">external</span><span class="o">=</span><span class="n">external</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">919</span>                           <span class="n">criterion</span><span class="o">=</span><span class="n">criterion</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">920</span>                           <span class="n">plot_alpha</span><span class="o">=</span><span class="n">plot_alpha</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">~\Anaconda\lib\site-packages\statsmodels\graphics\regressionplots.py</span> in <span class="ni">_influence_plot</span><span class="nt">(results, influence, external, alpha, criterion, size, plot_alpha, ax, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">879</span>     <span class="n">leverage</span> <span class="o">=</span> <span class="n">infl</span><span class="o">.</span><span class="n">hat_matrix_diag</span>
+<span class="g g-Whitespace">    </span><span class="mi">880</span>     <span class="k">if</span> <span class="n">external</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">881</span>         <span class="n">resids</span> <span class="o">=</span> <span class="n">infl</span><span class="o">.</span><span class="n">resid_studentized_external</span>
+<span class="g g-Whitespace">    </span><span class="mi">882</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">883</span>         <span class="n">resids</span> <span class="o">=</span> <span class="n">infl</span><span class="o">.</span><span class="n">resid_studentized</span>
+
+<span class="nn">~\Anaconda\lib\site-packages\pandas\_libs\properties.pyx</span> in <span class="ni">pandas._libs.properties.CachedProperty.__get__</span><span class="nt">()</span>
+
+<span class="nn">~\Anaconda\lib\site-packages\statsmodels\stats\outliers_influence.py</span> in <span class="ni">resid_studentized_external</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">658</span>         <span class="n">requires</span> <span class="n">leave</span> <span class="n">one</span> <span class="n">out</span> <span class="n">loop</span> <span class="k">for</span> <span class="n">observations</span>
+<span class="g g-Whitespace">    </span><span class="mi">659</span>         <span class="sd">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">660</span><span class="sd">         sigma_looo = np.sqrt(self.sigma2_not_obsi)</span>
+<span class="g g-Whitespace">    </span><span class="mi">661</span><span class="sd">         return self.get_resid_studentized_external(sigma=sigma_looo)</span>
+<span class="g g-Whitespace">    </span><span class="mi">662</span><span class="sd"> </span>
+
+<span class="nn">~\Anaconda\lib\site-packages\pandas\_libs\properties.pyx</span> in <span class="ni">pandas._libs.properties.CachedProperty.__get__</span><span class="nt">()</span>
+
+<span class="nn">~\Anaconda\lib\site-packages\statsmodels\stats\outliers_influence.py</span> in <span class="ni">sigma2_not_obsi</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">792</span><span class="sd">         uses results from leave-one-observation-out loop</span>
+<span class="g g-Whitespace">    </span><span class="mi">793</span><span class="sd">         &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">794</span>         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_res_looo</span><span class="p">[</span><span class="s1">&#39;mse_resid&#39;</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">795</span> 
+<span class="g g-Whitespace">    </span><span class="mi">796</span>     <span class="nd">@property</span>
+
+<span class="nn">~\Anaconda\lib\site-packages\pandas\_libs\properties.pyx</span> in <span class="ni">pandas._libs.properties.CachedProperty.__get__</span><span class="nt">()</span>
+
+<span class="nn">~\Anaconda\lib\site-packages\statsmodels\stats\outliers_influence.py</span> in <span class="ni">_res_looo</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">954</span>             <span class="n">res_i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_class</span><span class="p">(</span><span class="n">endog</span><span class="p">[</span><span class="n">inidx</span><span class="p">],</span> <span class="n">exog</span><span class="p">[</span><span class="n">inidx</span><span class="p">])</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">955</span>             <span class="n">params</span><span class="p">[</span><span class="n">outidx</span><span class="p">]</span> <span class="o">=</span> <span class="n">res_i</span><span class="o">.</span><span class="n">params</span>
+<span class="ne">--&gt; </span><span class="mi">956</span>             <span class="n">mse_resid</span><span class="p">[</span><span class="n">outidx</span><span class="p">]</span> <span class="o">=</span> <span class="n">res_i</span><span class="o">.</span><span class="n">mse_resid</span>
+<span class="g g-Whitespace">    </span><span class="mi">957</span>             <span class="n">det_cov_params</span><span class="p">[</span><span class="n">outidx</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_det_cov_params</span><span class="p">(</span><span class="n">res_i</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">958</span> 
+
+<span class="nn">~\Anaconda\lib\site-packages\statsmodels\base\wrapper.py</span> in <span class="ni">__getattribute__</span><span class="nt">(self, attr)</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span>             <span class="k">pass</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span> 
+<span class="ne">---&gt; </span><span class="mi">34</span>         <span class="n">obj</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span>         <span class="n">data</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">data</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>         <span class="n">how</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrap_attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+
+<span class="nn">~\Anaconda\lib\site-packages\pandas\_libs\properties.pyx</span> in <span class="ni">pandas._libs.properties.CachedProperty.__get__</span><span class="nt">()</span>
+
+<span class="nn">~\Anaconda\lib\site-packages\statsmodels\regression\linear_model.py</span> in <span class="ni">mse_resid</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1750</span>         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df_resid</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1751</span>             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ssr</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1752</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssr</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">df_resid</span>
+<span class="g g-Whitespace">   </span><span class="mi">1753</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1754</span>     <span class="nd">@cache_readonly</span>
+
+<span class="nn">~\Anaconda\lib\site-packages\pandas\_libs\properties.pyx</span> in <span class="ni">pandas._libs.properties.CachedProperty.__get__</span><span class="nt">()</span>
+
+<span class="nn">~\Anaconda\lib\site-packages\statsmodels\regression\linear_model.py</span> in <span class="ni">ssr</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1653</span>     <span class="k">def</span> <span class="nf">ssr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1654</span>         <span class="sd">&quot;&quot;&quot;Sum of squared (whitened) residuals.&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1655</span>         <span class="n">wresid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wresid</span>
+<span class="g g-Whitespace">   </span><span class="mi">1656</span>         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">wresid</span><span class="p">,</span> <span class="n">wresid</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1657</span> 
+
+<span class="nn">~\Anaconda\lib\site-packages\pandas\_libs\properties.pyx</span> in <span class="ni">pandas._libs.properties.CachedProperty.__get__</span><span class="nt">()</span>
+
+<span class="nn">~\Anaconda\lib\site-packages\statsmodels\regression\linear_model.py</span> in <span class="ni">wresid</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1629</span>         <span class="n">The</span> <span class="n">residuals</span> <span class="n">of</span> <span class="n">the</span> <span class="n">transformed</span><span class="o">/</span><span class="n">whitened</span> <span class="n">regressand</span> <span class="ow">and</span> <span class="n">regressor</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1630</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1631</span><span class="s2">         return self.model.wendog - self.model.predict(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1632</span><span class="s2">             self.params, self.model.wexog)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1633</span><span class="s2"> </span>
+
+<span class="nn">~\Anaconda\lib\site-packages\statsmodels\regression\linear_model.py</span> in <span class="ni">predict</span><span class="nt">(self, params, exog)</span>
+<span class="g g-Whitespace">    </span><span class="mi">378</span><span class="s2">             exog = self.exog</span>
+<span class="g g-Whitespace">    </span><span class="mi">379</span><span class="s2"> </span>
+<span class="ne">--&gt; </span><span class="mi">380</span><span class="s2">         return np.dot(exog, params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">381</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">382</span><span class="s2">     def get_distribution(self, params, scale, exog=None, dist_class=None):</span>
+
+<span class="nn">&lt;__array_function__ internals&gt;</span> in <span class="ni">dot</span><span class="nt">(*args, **kwargs)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+<img alt="_images/regression_159_1.png" src="_images/regression_159_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
